@@ -5,13 +5,11 @@
 
     <item
         android:id="@+id/filter_menu_icon"
+        android:checkableBehavior="single"
         android:icon="@drawable/ic_filter"
         android:iconTint="@color/white"
-        android:title="@string/filter"
-        android:tooltipText="Filter"
         app:showAsAction="always"
         tools:targetApi="o">
-
         <menu>
 
             <item
@@ -22,6 +20,8 @@
                 android:title="@string/canceled" />
 
         </menu>
+
+
     </item>
 
 
