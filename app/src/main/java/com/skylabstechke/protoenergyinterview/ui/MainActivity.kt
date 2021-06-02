@@ -1,7 +1,8 @@
-package com.skylabstechke.protoenergyinterview
+package com.skylabstechke.protoenergyinterview.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.skylabstechke.protoenergyinterview.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
