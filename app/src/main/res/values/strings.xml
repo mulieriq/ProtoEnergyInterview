@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ProtoEnergyInterview</string>
+    <string name="canceled">Canceled</string>
+    <string name="pending">Pending</string>
+    <string name="filter">Filter</string>
 </resources>
