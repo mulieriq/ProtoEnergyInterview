@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.title = "Payment Options"
-
-
+        supportActionBar?.apply {
+            title = "Payment Options"
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
