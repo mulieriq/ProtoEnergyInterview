@@ -17,6 +17,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -85,6 +86,9 @@ dependencies {
     // Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.todkars:shimmer-recyclerview:0.4.0'
+   //multi dex
+//    implementation 'com.android.support:multidex:2.0.1'
+
     //Leak Canary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }
