@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.skylabstechke.protoenergyinterview.databinding.ActivityRowLayoutBinding
+import com.skylabstechke.protoenergyinterview.models.OrdersModel
 import com.skylabstechke.protoenergyinterview.utils.OrdersDefaultUtil
 import java.util.Collections.emptyList
 
 class OrderRecyclerViewAdapter : RecyclerView.Adapter<OrderRecyclerViewAdapter.MyViewHolder>() {
-    private var orders = emptyList<MockData>()
+    private var orders = emptyList<OrdersModel>()
 
     class MyViewHolder(private val binding: ActivityRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(orders: MockData) {
+        fun bind(orders: OrdersModel) {
             binding.orderResult = orders
         }
 
@@ -44,7 +45,7 @@ class OrderRecyclerViewAdapter : RecyclerView.Adapter<OrderRecyclerViewAdapter.M
         return orders.size
     }
 
-    fun setData(newData: List<MockData>) {
+    fun setData(newData: List<OrdersModel>) {
         val orderDifUtil = OrdersDefaultUtil(orders, newData)
         val diffUtilResults = DiffUtil.calculateDiff(orderDifUtil)
         diffUtilResults.dispatchUpdatesTo(this)

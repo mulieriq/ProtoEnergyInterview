@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.skylabstechke.protoenergyinterview.models.OrdersModel
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 
 class ActivityBindingAdapter {
@@ -12,7 +13,7 @@ class ActivityBindingAdapter {
 
         @BindingAdapter("errImageViewVisibility", "readApiResponse")
         @JvmStatic
-        fun errImageViewVisibility(imageView: ImageView, apiResponse: NetworkResult<MockData>) {
+        fun errImageViewVisibility(imageView: ImageView, apiResponse: NetworkResult<OrdersModel>) {
             when (apiResponse) {
                 is NetworkResult.Error -> {
                     imageView.visibility = View.VISIBLE
@@ -28,7 +29,7 @@ class ActivityBindingAdapter {
 
         @BindingAdapter("errTextViewVisibility", "readApiResponse")
         @JvmStatic
-        fun errTextViewVisibility(textView: TextView, apiResponse: NetworkResult<MockData>) {
+        fun errTextViewVisibility(textView: TextView, apiResponse: NetworkResult<OrdersModel>) {
             when (apiResponse) {
                 is NetworkResult.Error -> {
                     textView.visibility = View.VISIBLE

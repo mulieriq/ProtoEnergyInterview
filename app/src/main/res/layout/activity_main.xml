@@ -36,13 +36,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:alpha="0.5"
+            android:contentDescription="@string/error_image"
             android:src="@drawable/ic_network_error"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.40"
-            android:contentDescription="@string/error_image" />
+            app:layout_constraintVertical_bias="0.40" />
 
         <TextView
             android:id="@+id/textView5"
