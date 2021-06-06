@@ -1,3 +1,6 @@
 package com.skylabstechke.protoenergyinterview.models
 
-data class MockData(private val orderId:String)
+data class MockData(
+    val orderId: String,
+    val orderProgress: String
+)
