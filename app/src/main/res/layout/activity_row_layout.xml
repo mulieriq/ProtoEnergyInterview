@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="orderResult"
-            type="com.skylabstechke.protoenergyinterview.models.MockData" />
+<variable
+    name="orderResult"
+    type="com.skylabstechke.protoenergyinterview.models.MockData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,13 +59,13 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    textVariant="@{orderResult.orderProgress}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginBottom="12dp"
                     android:text="@string/canceled"
+                    textVariant="@{orderResult.orderProgress}"
                     android:textColor="@color/green"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"

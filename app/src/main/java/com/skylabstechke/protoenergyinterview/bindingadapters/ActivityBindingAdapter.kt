@@ -12,6 +12,7 @@ class ActivityBindingAdapter {
     companion object {
 
         @BindingAdapter("errImageViewVisibility", "readApiResponse")
+        @JvmStatic
         fun errImageViewVisibility(imageView: ImageView, apiResponse: NetworkResult<MockData>) {
             when (apiResponse) {
                 is NetworkResult.Error -> {
@@ -26,6 +27,8 @@ class ActivityBindingAdapter {
             }
         }
 
+        @BindingAdapter("errTextViewVisibility", "readApiResponse")
+        @JvmStatic
         fun errTextViewVisibility(textView: TextView, apiResponse: NetworkResult<MockData>) {
             when (apiResponse) {
                 is NetworkResult.Error -> {
