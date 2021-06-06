@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.skylabstechke.protoenergyinterview.databinding.ActivityRowLayoutBinding
-import com.skylabstechke.protoenergyinterview.models.MockData
 import com.skylabstechke.protoenergyinterview.utils.OrdersDefaultUtil
 import java.util.Collections.emptyList
 

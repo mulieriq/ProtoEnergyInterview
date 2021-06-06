@@ -1,7 +1,6 @@
 package com.skylabstechke.protoenergyinterview.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.skylabstechke.protoenergyinterview.models.MockData
 
 class OrdersDefaultUtil(
     private val oldOrders: List<MockData>,

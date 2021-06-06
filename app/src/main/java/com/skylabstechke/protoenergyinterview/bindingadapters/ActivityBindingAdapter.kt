@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.skylabstechke.protoenergyinterview.models.MockData
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 
 class ActivityBindingAdapter {
