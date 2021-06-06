@@ -5,10 +5,9 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.QueryMap
 
-interface OrdersApi
-{
+interface OrdersApi {
     @GET("/api/data")
     suspend fun getOrders(
-        @QueryMap queries :Map<String,String>
-    ):Response<MockData>
+        @QueryMap queries: Map<String, String>
+    ): Response<MockData>
 }

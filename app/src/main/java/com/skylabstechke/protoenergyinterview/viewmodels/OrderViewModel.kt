@@ -9,5 +9,5 @@ import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 
 class OrderViewModel @ViewModelInject constructor(application: Application) :
     AndroidViewModel(application) {
-        var orderResponse : MutableLiveData<NetworkResult<MockData>> = MutableLiveData()
+    var orderResponse: MutableLiveData<NetworkResult<MockData>> = MutableLiveData()
 }
