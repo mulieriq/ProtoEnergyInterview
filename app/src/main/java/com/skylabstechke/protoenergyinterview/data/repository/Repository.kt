@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 @ActivityRetainedScoped
 class Repository @Inject constructor(private val ordersApi: OrdersApi) {
-    suspend fun getOrders(queries: Map<String, String>): Response<OrdersModel> {
-        return ordersApi.getOrders(queries)
+    suspend fun getOrders(): Response<OrdersModel> {
+        return ordersApi.getOrders()
     }
 }

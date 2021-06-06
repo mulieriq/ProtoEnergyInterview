@@ -1,10 +1,12 @@
 package com.skylabstechke.protoenergyinterview.utils
 
 import androidx.recyclerview.widget.DiffUtil
+import com.skylabstechke.protoenergyinterview.models.OrdersModel
+import com.skylabstechke.protoenergyinterview.models.OrdersModelItem
 
 class OrdersDefaultUtil(
-    private val oldOrders: List<MockData>,
-    private val newOrders: List<MockData>
+    private val oldOrders: List<OrdersModelItem>,
+    private val newOrders: List<OrdersModelItem>
 
 ) : DiffUtil.Callback() {
     override fun getOldListSize(): Int {
