@@ -15,9 +15,6 @@ class OrderRecyclerViewAdapter : RecyclerView.Adapter<OrderRecyclerViewAdapter.M
 
     class MyViewHolder(private val binding: ActivityRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(orders: OrdersModelItem) {
-          //  binding.result = orders
-        }
 
         companion object {
             fun from(parent: ViewGroup): MyViewHolder {
@@ -32,14 +29,13 @@ class OrderRecyclerViewAdapter : RecyclerView.Adapter<OrderRecyclerViewAdapter.M
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): OrderRecyclerViewAdapter.MyViewHolder {
+    ): MyViewHolder {
         return MyViewHolder.from(parent)
     }
 
 
-    override fun onBindViewHolder(holder: OrderRecyclerViewAdapter.MyViewHolder, position: Int) {
-        val currentOrder = orders[position]
-        holder.bind(currentOrder)
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
     }
 
     override fun getItemCount(): Int {
