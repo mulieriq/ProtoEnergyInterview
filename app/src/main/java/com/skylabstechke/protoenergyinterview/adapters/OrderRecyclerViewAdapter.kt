@@ -16,7 +16,7 @@ class OrderRecyclerViewAdapter : RecyclerView.Adapter<OrderRecyclerViewAdapter.M
     class MyViewHolder(private val binding: ActivityRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(orders: OrdersModelItem) {
-            binding.orderResult = orders
+            binding.result = orders
         }
 
         companion object {

@@ -4,12 +4,12 @@ plugins {
     id 'kotlin-kapt'
     id "androidx.navigation.safeargs.kotlin"
     id 'dagger.hilt.android.plugin'
-    id 'kotlin-android-extensions'
 }
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+
 
     defaultConfig {
         applicationId "com.skylabstechke.protoenergyinterview"
@@ -32,6 +32,8 @@ android {
         viewBinding true
         dataBinding true
     }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -60,7 +62,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
     // Data binding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
-    kapt "androidx.databinding:databinding-common:4.1.1"
+    kapt "androidx.databinding:databinding-common:4.2.1"
     // Recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
@@ -86,7 +88,7 @@ dependencies {
     // Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.todkars:shimmer-recyclerview:0.4.0'
-   //multi dex
+    //multi dex
 //    implementation 'com.android.support:multidex:2.0.1'
 
     //Leak Canary

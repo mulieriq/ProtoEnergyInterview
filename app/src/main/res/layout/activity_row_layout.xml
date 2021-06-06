@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
-    name="orderResult"
-    type="com.skylabstechke.protoenergyinterview.models.OrdersModelItem" />
+        <variable
+            name="result"
+            type="com.skylabstechke.protoenergyinterview.models.OrdersModelItem" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +41,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:text="@string/athi_river_kenya"
-                    textVariant="@{orderResult.deliveryPointName}"
+
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -52,7 +55,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="12dp"
                     android:text="@string/jane_doe"
-                    textVariant="@{orderResult.customerName}"
+
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +85,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
                     android:text="@string/time"
-                    textVariant="@{orderResult.dateModified}"
+
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
