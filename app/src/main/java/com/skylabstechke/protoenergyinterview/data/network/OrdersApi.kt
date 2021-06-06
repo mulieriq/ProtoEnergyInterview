@@ -5,6 +5,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface OrdersApi {
-    @GET("/api/data")
+    @GET("api/v1/orders.json")
     suspend fun getOrders(): Response<OrdersModel>
 }
