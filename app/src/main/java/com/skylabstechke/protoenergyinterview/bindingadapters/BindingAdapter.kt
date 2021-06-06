@@ -4,7 +4,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 
 class BindingAdapter {
-
     companion object{
         @BindingAdapter("textVariant")
         @JvmStatic
