@@ -30,7 +30,7 @@ android {
     }
     buildFeatures {
         viewBinding true
-        dataBinding true
+
     }
 
 
@@ -60,9 +60,7 @@ dependencies {
     // Navigation Component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
-    // Data binding
-    kapt "com.android.databinding:compiler:3.2.0-alpha10"
-    kapt "androidx.databinding:databinding-common:4.2.1"
+    
     // Recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
