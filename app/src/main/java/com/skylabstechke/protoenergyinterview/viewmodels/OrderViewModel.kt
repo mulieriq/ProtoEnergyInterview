@@ -1,13 +1,74 @@
 package com.skylabstechke.protoenergyinterview.viewmodels
 
 import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.skylabstechke.protoenergyinterview.data.network.OrdersApi
+import androidx.lifecycle.viewModelScope
+import com.skylabstechke.protoenergyinterview.data.repository.Repository
+import com.skylabstechke.protoenergyinterview.models.OrdersModel
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
+import kotlinx.coroutines.launch
+import retrofit2.Response
 
-class OrderViewModel @ViewModelInject constructor(application: Application) :
+class OrderViewModel @ViewModelInject constructor(
+    application: Application,
+    private val repository: Repository
+) :
     AndroidViewModel(application) {
-    var orderResponse: MutableLiveData<NetworkResult<OrdersApi>> = MutableLiveData()
+    var orderResponse: MutableLiveData<NetworkResult<OrdersModel>> = MutableLiveData()
+
+    fun getOrders() = viewModelScope.launch {
+        getOrdersSafeCall()
+    }
+
+    private suspend fun getOrdersSafeCall() {
+        orderResponse.value = NetworkResult.Loading()
+        if (hasInternetConnection()) {
+            try {
+                val apiOrderResponse = repository.getOrders()
+                orderResponse.value = handleApiOrderResponse(apiOrderResponse)
+            } catch (e: Exception) {
+                orderResponse.value = NetworkResult.Error("Orders not found.")
+            }
+        }
+    }
+
+    private fun handleApiOrderResponse(apiOrderResponse: Response<OrdersModel>): NetworkResult<OrdersModel>? {
+
+        when {
+            apiOrderResponse.message().toString().contains("timeout") -> {
+                return NetworkResult.Error("Timeout")
+            }
+            apiOrderResponse.body()!!.isEmpty() -> {
+                return NetworkResult.Error("Recipes not found.")
+            }
+            apiOrderResponse.isSuccessful -> {
+                val foodRecipes = apiOrderResponse.body()
+                return NetworkResult.Success(apiOrderResponse.body()!!)
+
+            }
+            else -> {
+                return NetworkResult.Error(apiOrderResponse.message())
+            }
+        }
+
+    }
+
+    private fun hasInternetConnection(): Boolean {
+        val connectivityManager =
+            getApplication<Application>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetWork = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetWork) ?: return false
+
+        return when {
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
+        }
+    }
 }
