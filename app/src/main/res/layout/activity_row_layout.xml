@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-  android:layout_margin="4dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
 
     <com.google.android.material.card.MaterialCardView
-        android:elevation="5dp"
         android:layout_width="match_parent"
-        app:cardCornerRadius="10dp"
         android:layout_height="wrap_content"
+        android:elevation="5dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -70,9 +70,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
-                android:textSize="12sp"
                 android:text="31-05-2021 at 19:37 pm"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.97"
                 app:layout_constraintStart_toEndOf="@+id/textView"
