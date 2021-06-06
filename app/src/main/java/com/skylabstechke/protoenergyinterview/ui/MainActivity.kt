@@ -7,15 +7,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.protoenergyinterview.R
 import com.skylabstechke.protoenergyinterview.adapters.OrderRecyclerViewAdapter
 import com.skylabstechke.protoenergyinterview.databinding.ActivityMainBinding
-import com.skylabstechke.protoenergyinterview.databinding.ActivityRowLayoutBinding
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 import com.skylabstechke.protoenergyinterview.viewmodels.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,38 +63,45 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.payment_options_menu, menu)
         return true
     }
-   private fun setUpRecyclerView(){
+
+    private fun setUpRecyclerView() {
         binding.recyclerView.adapter = mAdapter
-        binding.recyclerView.layoutManager =LinearLayoutManager(this)
-        //showshimmereffect
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        showShimmerEffect()
     }
 
-  private  fun requestApi(){
-      orderViewModel.getOrders()
-      orderViewModel.orderResponse.observe(this, Observer { response->
-          when (response) {
-              is NetworkResult.Success -> {
-                  Log.d("REQUEST DATA SUCCESS", "Requesting DATA SUCCESS")
+    private fun hideShimmerEffect() {
 
-                  response.data?.let { mAdapter.setData(it) }
-              }
-              is NetworkResult.Error -> {
+        binding.recyclerView.hideShimmer()
+    }
 
-                  Toast.makeText(
-                      this,
-                      response.message.toString(),
-                      Toast.LENGTH_SHORT
-                  ).show()
-              }
-              is NetworkResult.Loading -> {
-                  Toast.makeText(
-                      this,
-                      "Loading",
-                      Toast.LENGTH_SHORT
-                  ).show()
-              }
-          }
+    private fun showShimmerEffect() {
 
-      })
-  }
+        binding.recyclerView.showShimmer()
+    }
+
+    private fun requestApi() {
+        orderViewModel.getOrders()
+        orderViewModel.orderResponse.observe(this, Observer { response ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    Log.d("REQUEST DATA SUCCESS", "Requesting DATA SUCCESS")
+                    hideShimmerEffect()
+                    response.data?.let { mAdapter.setData(it) }
+                }
+                is NetworkResult.Error -> {
+                    hideShimmerEffect()
+                    Toast.makeText(
+                        this,
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is NetworkResult.Loading -> {
+                    showShimmerEffect()
+                }
+            }
+
+        })
+    }
 }
