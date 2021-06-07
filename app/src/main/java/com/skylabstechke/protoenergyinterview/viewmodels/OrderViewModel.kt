@@ -32,7 +32,7 @@ class OrderViewModel @ViewModelInject constructor(
                 val apiOrderResponse = repository.getOrders()
                 orderResponse.value = handleApiOrderResponse(apiOrderResponse)
             } catch (e: Exception) {
-                orderResponse.value = NetworkResult.Error("Orders not found.")
+                orderResponse.value = NetworkResult.Error(e.message.toString())
             }
         }
     }

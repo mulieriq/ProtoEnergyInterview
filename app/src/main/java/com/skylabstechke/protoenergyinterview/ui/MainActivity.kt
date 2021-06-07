@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
         setUpRecyclerView()
-        //  requestApi()
+         requestApi()
 
     }
 
@@ -89,7 +90,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestApi() {
-        orderViewModel.getOrders()
+      val request =  orderViewModel.getOrders()
+        Log.d("REQUEST DATA", request.toString())
         orderViewModel.orderResponse.observe(this, Observer { response ->
             when (response) {
                 is NetworkResult.Success -> {
@@ -98,6 +100,10 @@ class MainActivity : AppCompatActivity() {
                     response.data?.let { mAdapter.setData(it) }
                 }
                 is NetworkResult.Error -> {
+
+                    binding.errorImage.visibility = View.VISIBLE
+                    binding.errText.visibility = View.VISIBLE
+                    binding.errText.text = response.message.toString()
                     hideShimmerEffect()
                     Toast.makeText(
                         this,
