@@ -93,7 +93,9 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.showShimmer()
     }
 
+
     private fun requestApi() {
+
         val request = orderViewModel.getOrders()
         Log.d("REQUEST DATA", request.toString())
         orderViewModel.orderResponse.observe(this, Observer { response ->
@@ -154,14 +156,18 @@ class MainActivity : AppCompatActivity() {
                             it
 
                         )
+
                     }
 
 
                 }
 
+
             }
 
-        })
-
+        }
+        )
     }
+
+
 }

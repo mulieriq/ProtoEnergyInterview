@@ -7,13 +7,15 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.skylabstechke.protoenergyinterview.databinding.ActivityRowLayoutBinding
-import com.skylabstechke.protoenergyinterview.models.OrdersModel
+
+import com.skylabstechke.protoenergyinterview.models.OrdersModelItem
 import com.skylabstechke.protoenergyinterview.utils.OrdersDefaultUtil
 import com.skylabstechke.protoenergyinterview.utils.formatTo
 import com.skylabstechke.protoenergyinterview.utils.toDate
+import java.util.Collections.emptyList
 
 class OrderRecyclerViewAdapter : RecyclerView.Adapter<OrderRecyclerViewAdapter.MyViewHolder>() {
-    private var orders = OrdersModel()
+    private var orders =  emptyList<OrdersModelItem>()
 
     inner class MyViewHolder(val binding: ActivityRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -35,19 +37,19 @@ class OrderRecyclerViewAdapter : RecyclerView.Adapter<OrderRecyclerViewAdapter.M
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.customerName.text = orders[position].customerName
-        holder.binding.deliveryPoint.text = orders[position].deliveryPointName
-        holder.binding.status.text = orders[position].status
+        holder.binding.customerName.text = orders!![position]?.customerName
+        holder.binding.deliveryPoint.text = orders!![position]?.deliveryPointName
+        holder.binding.status.text = orders!![position]?.status
         holder.binding.dateCreated.text =
-            orders[position].dateCreated?.toDate()?.formatTo("dd-MM-yyyy 'at' HH:mm")
+            orders!![position]?.dateCreated?.toDate()?.formatTo("dd-MM-yyyy 'at' HH:mm")
 
     }
 
     override fun getItemCount(): Int {
-        return orders.size
+        return orders!!.size
     }
 
-    fun setData(newData: OrdersModel) {
+    fun setData(newData: List<OrdersModelItem>) {
         val orderDifUtil = OrdersDefaultUtil(orders, newData)
         val diffUtilResults = DiffUtil.calculateDiff(orderDifUtil)
         diffUtilResults.dispatchUpdatesTo(this)

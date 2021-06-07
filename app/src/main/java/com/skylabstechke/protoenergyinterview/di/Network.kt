@@ -3,6 +3,7 @@ package com.skylabstechke.protoenergyinterview.di
 
 import com.skylabstechke.protoenergyinterview.data.network.OrdersApi
 import com.skylabstechke.protoenergyinterview.utils.Constants.Companion.BASE_URL
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,8 +21,13 @@ import javax.inject.Singleton
 object Network {
     @Singleton
     @Provides
+    fun provideMoshiInstance():Moshi{
+        return Moshi.Builder().build()
+    }
+    @Singleton
+    @Provides
     fun provideConvertFactory(): MoshiConverterFactory {
-        return MoshiConverterFactory.create()
+      return MoshiConverterFactory.create()
     }
 
     @Singleton
