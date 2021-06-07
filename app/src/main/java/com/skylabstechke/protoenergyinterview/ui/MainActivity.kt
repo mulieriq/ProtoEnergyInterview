@@ -35,17 +35,20 @@ class MainActivity : AppCompatActivity() {
             title = "Payment Options"
         }
 
+        orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
+
     }
 
     override fun onResume() {
         super.onResume()
-        orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
+
         setUpRecyclerView()
         requestApi()
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        _binding = null
 
     }
 

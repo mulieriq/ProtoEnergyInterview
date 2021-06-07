@@ -26,7 +26,7 @@ object Network {
     @Singleton
     @Provides
     fun provideHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder().readTimeout(15, TimeUnit.NANOSECONDS)
+        return OkHttpClient.Builder().readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
             .build()
     }
