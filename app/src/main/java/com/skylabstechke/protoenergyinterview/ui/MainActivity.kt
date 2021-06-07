@@ -148,11 +148,12 @@ class MainActivity : AppCompatActivity() {
                 is NetworkResult.Success -> {
                     hideShimmerEffect()
                     response.data?.let {
-                        mAdapter.setData(it.apply {
-                            it.removeIf { item ->
-                                item.status != query
-                            }
-                        })
+
+
+                        mAdapter.setData(
+                            it
+
+                        )
                     }
 
 

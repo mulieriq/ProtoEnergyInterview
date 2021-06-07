@@ -20,8 +20,8 @@ import javax.inject.Singleton
 object Network {
     @Singleton
     @Provides
-    fun provideConvertFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
+    fun provideConvertFactory(): MoshiConverterFactory {
+        return MoshiConverterFactory.create()
     }
 
     @Singleton
@@ -36,10 +36,10 @@ object Network {
     @Provides
     fun provideRetrofitInstance(
         okHttpClient: OkHttpClient,
-        gsonConverterFactory: GsonConverterFactory
+        moshiConverterFactory: MoshiConverterFactory
     ): Retrofit {
         return Retrofit.Builder().baseUrl(BASE_URL).client(okHttpClient)
-            .addConverterFactory(gsonConverterFactory).build()
+            .addConverterFactory(moshiConverterFactory).build()
     }
 
     @Singleton
