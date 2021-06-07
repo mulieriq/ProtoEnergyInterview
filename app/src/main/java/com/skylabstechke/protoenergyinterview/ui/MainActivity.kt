@@ -1,5 +1,6 @@
 package com.skylabstechke.protoenergyinterview.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.apply {
             title = "Payment Options"
+
         }
 
         orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
