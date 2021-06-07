@@ -30,21 +30,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        _binding = ActivityMainBinding.inflate(
+            layoutInflater
+        )
+        setContentView(binding.root)
         supportActionBar?.apply {
             title = "Payment Options"
         }
 
         orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-
         setUpRecyclerView()
-        requestApi()
+        //  requestApi()
+
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
