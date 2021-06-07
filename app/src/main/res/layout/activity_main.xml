@@ -38,28 +38,31 @@
 <!--            tools:listitem="@layout/activity_row_layout" />-->
 
 
-        <ImageView
-            android:id="@+id/errorImage"
+    <ImageView
+        android:id="@+id/errorImage"
 
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:alpha="0.5"
-            android:contentDescription="@string/error_image"
-            android:src="@drawable/ic_network_error"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.40" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:alpha="0.5"
+        android:contentDescription="@string/error_image"
+        android:src="@drawable/ic_network_error"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35000002" />
 
     <TextView
         android:id="@+id/errText"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="6dp"
         android:alpha="0.5"
+        android:gravity="center"
         android:text="@string/no_internet_connection"
         android:textSize="24sp"
         android:textStyle="bold"
