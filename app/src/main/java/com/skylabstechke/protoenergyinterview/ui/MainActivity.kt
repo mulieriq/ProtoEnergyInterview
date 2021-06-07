@@ -136,10 +136,11 @@ class MainActivity : AppCompatActivity() {
                     showShimmerEffect()
                 }
                 is NetworkResult.Error -> {
+
                     hideShimmerEffect()
                     binding.errorImage.visibility = View.VISIBLE
                     binding.errText.visibility = View.VISIBLE
-                    binding.errText.text = "No Results Found"
+                    binding.errText.text = response.message.toString()
                     hideShimmerEffect()
                     Toast.makeText(
                         this,

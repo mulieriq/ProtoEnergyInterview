@@ -36,6 +36,8 @@ class OrderViewModel @ViewModelInject constructor(
             } catch (e: Exception) {
                 orderResponse.value = NetworkResult.Error(e.message.toString())
             }
+        }else{
+            orderResponse.value = NetworkResult.Error("No Internet Connection")
         }
     }
 
