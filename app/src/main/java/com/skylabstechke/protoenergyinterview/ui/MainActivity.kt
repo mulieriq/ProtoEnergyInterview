@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.apply {
             title = "Payment Options"
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
         setUpRecyclerView()
         requestApi()
