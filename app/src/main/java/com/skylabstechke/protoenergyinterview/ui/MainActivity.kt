@@ -96,6 +96,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun requestApi() {
 
+
         val request = orderViewModel.getOrders()
         Log.d("REQUEST DATA", request.toString())
         orderViewModel.orderResponse.observe(this, Observer { response ->
@@ -151,9 +152,10 @@ class MainActivity : AppCompatActivity() {
                     hideShimmerEffect()
                     response.data?.let {
 
-
                         mAdapter.setData(
-                            it
+                            it.filter { value ->
+                                value.status == query
+                            }
 
                         )
 
