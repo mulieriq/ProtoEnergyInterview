@@ -1,8 +1,7 @@
 package com.skylabstechke.protoenergyinterview.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 class OrdersModel : ArrayList<OrdersModelItem>()

@@ -1,47 +1,45 @@
 package com.skylabstechke.protoenergyinterview.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.google.gson.annotations.SerializedName
 
-@JsonClass(generateAdapter = true)
 data class OrdersModelItem(
-    @Json(name = "batchNumber")
+    @SerializedName("batchNumber")
     val batchNumber: String?,
-    @Json(name = "createdBy")
+    @SerializedName("createdBy")
     val createdBy: String?,
-    @Json(name = "creatorUserEmail")
+    @SerializedName("creatorUserEmail")
     val creatorUserEmail: String?,
-    @Json(name = "customerCode")
+    @SerializedName("customerCode")
     val customerCode: String?,
-    @Json(name = "customerName")
+    @SerializedName("customerName")
     val customerName: String?,
-    @Json(name = "dateCreated")
+    @SerializedName("dateCreated")
     val dateCreated: String?,
-    @Json(name = "dateModified")
+    @SerializedName("dateModified")
     val dateModified: String?,
-    @Json(name = "deliveryPointCode")
+    @SerializedName("deliveryPointCode")
     val deliveryPointCode: String?,
-    @Json(name = "deliveryPointName")
+    @SerializedName("deliveryPointName")
     val deliveryPointName: String?,
-    @Json(name = "id")
+    @SerializedName("id")
     val id: String?,
-    @Json(name = "modifiedBy")
+    @SerializedName("modifiedBy")
     val modifiedBy: String?,
-    @Json(name = "modifierUserEmail")
+    @SerializedName("modifierUserEmail")
     val modifierUserEmail: Any?,
-    @Json(name = "orderTotal")
+    @SerializedName("orderTotal")
     val orderTotal: Int?,
-    @Json(name = "remarks")
+    @SerializedName("remarks")
     val remarks: String?,
-    @Json(name = "rowNumber")
+    @SerializedName("rowNumber")
     val rowNumber: Int?,
-    @Json(name = "salesAreaCode")
+    @SerializedName("salesAreaCode")
     val salesAreaCode: String?,
-    @Json(name = "salesAreaName")
+    @SerializedName("salesAreaName")
     val salesAreaName: String?,
-    @Json(name = "status")
+    @SerializedName("status")
     val status: String?,
-    @Json(name = "userPhoneNumber0")
+    @SerializedName("userPhoneNumber0")
     val userPhoneNumber0: String?
 )

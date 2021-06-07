@@ -9,6 +9,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -19,8 +20,8 @@ import javax.inject.Singleton
 object Network {
     @Singleton
     @Provides
-    fun provideConvertFactory(): MoshiConverterFactory {
-        return MoshiConverterFactory.create()
+    fun provideConvertFactory(): GsonConverterFactory {
+        return GsonConverterFactory.create()
     }
 
     @Singleton
@@ -35,10 +36,10 @@ object Network {
     @Provides
     fun provideRetrofitInstance(
         okHttpClient: OkHttpClient,
-        moshiConverterFactory: MoshiConverterFactory
+        gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder().baseUrl(BASE_URL).client(okHttpClient)
-            .addConverterFactory(moshiConverterFactory).build()
+            .addConverterFactory(gsonConverterFactory).build()
     }
 
     @Singleton
