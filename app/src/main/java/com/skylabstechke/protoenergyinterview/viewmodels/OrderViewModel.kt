@@ -9,7 +9,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.skylabstechke.protoenergyinterview.data.repository.Repository
-import com.skylabstechke.protoenergyinterview.models.OrdersModel
+import com.skylabstechke.protoenergyinterview.models.OrdersModelItem
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -19,7 +19,7 @@ class OrderViewModel @ViewModelInject constructor(
     private val repository: Repository
 ) :
     AndroidViewModel(application) {
-    var orderResponse: MutableLiveData<NetworkResult<OrdersModel>> = MutableLiveData()
+    var orderResponse: MutableLiveData<NetworkResult<List<OrdersModelItem>>> = MutableLiveData()
 
     fun getOrders() = viewModelScope.launch {
         getOrdersSafeCall()
@@ -37,7 +37,7 @@ class OrderViewModel @ViewModelInject constructor(
         }
     }
 
-    private fun handleApiOrderResponse(apiOrderResponse: Response<OrdersModel>): NetworkResult<OrdersModel>? {
+    private fun handleApiOrderResponse(apiOrderResponse: Response<List<OrdersModelItem>>): NetworkResult<List<OrdersModelItem>>? {
 
         when {
             apiOrderResponse.message().toString().contains("timeout") -> {
@@ -47,8 +47,8 @@ class OrderViewModel @ViewModelInject constructor(
                 return NetworkResult.Error("Recipes not found.")
             }
             apiOrderResponse.isSuccessful -> {
-                val foodRecipes = apiOrderResponse.body()
-                return NetworkResult.Success(apiOrderResponse.body()!!)
+                val orders = apiOrderResponse.body()
+                return NetworkResult.Success(orders!!)
 
             }
             else -> {
