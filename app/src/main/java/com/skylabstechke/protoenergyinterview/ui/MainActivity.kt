@@ -1,6 +1,5 @@
 package com.skylabstechke.protoenergyinterview.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
         setUpRecyclerView()
-         requestApi()
+        requestApi()
 
     }
 
@@ -58,11 +57,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.filter_menu_canceled -> {
-                Toast.makeText(this, "Canceled", Toast.LENGTH_LONG).show()
+                filter("Canceled")
                 true
             }
             R.id.filter_menu_pending -> {
-                Toast.makeText(this, "Pending", Toast.LENGTH_LONG).show()
+                filter("Pending")
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -92,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestApi() {
-      val request =  orderViewModel.getOrders()
+        val request = orderViewModel.getOrders()
         Log.d("REQUEST DATA", request.toString())
         orderViewModel.orderResponse.observe(this, Observer { response ->
             when (response) {
@@ -119,5 +118,40 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+
+    private fun filter(query: String) {
+        showShimmerEffect()
+        orderViewModel.filterOrders(query)
+        orderViewModel.filterResults.observe(this, Observer { response ->
+            when (response) {
+                is NetworkResult.Loading -> {
+                    showShimmerEffect()
+                }
+                is NetworkResult.Error -> {
+                    hideShimmerEffect()
+                    binding.errorImage.visibility = View.VISIBLE
+                    binding.errText.visibility = View.VISIBLE
+                    binding.errText.text = "No Results Found"
+                    hideShimmerEffect()
+                    Toast.makeText(
+                        this,
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+                is NetworkResult.Success -> {
+                    hideShimmerEffect()
+                    response.data?.let {
+                        mAdapter.setData(it)
+                    }
+                }
+
+            }
+
+        })
+
     }
 }
