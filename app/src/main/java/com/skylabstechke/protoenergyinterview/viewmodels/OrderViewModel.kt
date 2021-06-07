@@ -4,8 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.util.Log
-import android.widget.Toast
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -28,6 +26,7 @@ class OrderViewModel @ViewModelInject constructor(
         getOrdersSafeCall()
     }
 
+
     private suspend fun getOrdersSafeCall() {
         orderResponse.value = NetworkResult.Loading()
         if (hasInternetConnection()) {
@@ -39,38 +38,6 @@ class OrderViewModel @ViewModelInject constructor(
             }
         }
     }
-
-    fun filterOrders(query:String) = viewModelScope.launch {
-        filterSafeCall(query)
-    }
-
-    private suspend fun filterSafeCall(query: String) {
-        filterResults.value = NetworkResult.Loading()
-        if (hasInternetConnection()) {
-            Log.d("Search", "Search API")
-
-            if (hasInternetConnection()) {
-                try {
-                    Log.d("API", "CALLED")
-
-                    val response = repository.remoteDs.searchRecipes(queries)
-                    recipesResponse.value = handleFoodRecipesResponse(response)
-
-
-                } catch (e: Exception) {
-                    recipesResponse.value = NetworkResult.Error("Recipes not found.")
-                }
-
-            } else {
-                recipesResponse.value = NetworkResult.Error("No Internet Connection")
-            }
-
-        } else {
-            recipesResponse.value = NetworkResult.Error(message = "No Internet Connection")
-        }
-
-    }
-
 
 
     private fun handleApiOrderResponse(apiOrderResponse: Response<OrdersModel>): NetworkResult<OrdersModel>? {

@@ -1,5 +1,6 @@
 package com.skylabstechke.protoenergyinterview.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -7,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.filter_menu_canceled -> {
@@ -121,10 +124,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun filter(query: String) {
         showShimmerEffect()
-        orderViewModel.filterOrders(query)
-        orderViewModel.filterResults.observe(this, Observer { response ->
+        orderViewModel.orderResponse.observe(this, Observer { response ->
             when (response) {
                 is NetworkResult.Loading -> {
                     showShimmerEffect()
@@ -145,8 +148,14 @@ class MainActivity : AppCompatActivity() {
                 is NetworkResult.Success -> {
                     hideShimmerEffect()
                     response.data?.let {
-                        mAdapter.setData(it)
+                        mAdapter.setData(it.apply {
+                            it.removeIf { item ->
+                                item.status != query
+                            }
+                        })
                     }
+
+
                 }
 
             }

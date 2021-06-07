@@ -35,8 +35,6 @@ class OrderRecyclerViewAdapter : RecyclerView.Adapter<OrderRecyclerViewAdapter.M
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-
         holder.binding.customerName.text = orders[position].customerName
         holder.binding.deliveryPoint.text = orders[position].deliveryPointName
         holder.binding.status.text = orders[position].status
