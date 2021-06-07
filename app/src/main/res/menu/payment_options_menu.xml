@@ -11,17 +11,13 @@
         app:showAsAction="always"
         tools:targetApi="o">
         <menu>
-
             <item
                 android:id="@+id/filter_menu_pending"
                 android:title="@string/pending" />
             <item
                 android:id="@+id/filter_menu_canceled"
                 android:title="@string/canceled" />
-
         </menu>
-
     </item>
-
 
 </menu>

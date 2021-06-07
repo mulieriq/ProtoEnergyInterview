@@ -10,4 +10,6 @@
 
     <color name="mediumGray">#D1D1D1</color>
     <color name="green">#00C980</color>
+    <color name="darkGray">#4B4B4B</color>
+    <color name="dark">#313C44</color>
 </resources>

@@ -40,20 +40,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.apply {
             title = "Payment Options"
-
         }
 
         orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
         setUpRecyclerView()
         requestApi()
-
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -159,17 +156,10 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         )
-
                     }
-
-
                 }
-
-
             }
-
-        }
-        )
+        })
     }
 
 
