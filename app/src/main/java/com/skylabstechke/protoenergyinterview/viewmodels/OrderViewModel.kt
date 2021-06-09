@@ -32,7 +32,7 @@ class OrderViewModel @ViewModelInject constructor(
         orderResponse.value = NetworkResult.Loading()
         if (hasInternetConnection()) {
             try {
-                val apiOrderResponse = repository.getOrders().asLiveData()
+                val apiOrderResponse = repository.getOrders()
                 orderResponse.value = handleApiOrderResponse(apiOrderResponse)
             } catch (e: Exception) {
                 orderResponse.value = NetworkResult.Error(e.message.toString())
