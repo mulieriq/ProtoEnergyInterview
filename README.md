@@ -14,6 +14,7 @@
         * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - perform action when lifecycle state changes.
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious way.
     * [Moshi](https://github.com/square/moshi) - a modern JSON library for Android and Java. It makes it easy to parse JSON into Java objects.
+    * [Leak Canary](https://github.com/square/leakcanary) - a memory leak detection library for Android.
 
 * Architecture
     * MVVM - Model View View Model
