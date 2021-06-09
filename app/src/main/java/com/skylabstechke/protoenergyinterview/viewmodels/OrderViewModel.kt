@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.skylabstechke.protoenergyinterview.data.repository.Repository
 
@@ -31,7 +32,7 @@ class OrderViewModel @ViewModelInject constructor(
         orderResponse.value = NetworkResult.Loading()
         if (hasInternetConnection()) {
             try {
-                val apiOrderResponse = repository.getOrders()
+                val apiOrderResponse = repository.getOrders().asLiveData()
                 orderResponse.value = handleApiOrderResponse(apiOrderResponse)
             } catch (e: Exception) {
                 orderResponse.value = NetworkResult.Error(e.message.toString())
