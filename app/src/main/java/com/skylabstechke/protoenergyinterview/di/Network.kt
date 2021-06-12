@@ -2,7 +2,7 @@ package com.skylabstechke.protoenergyinterview.di
 
 
 import com.skylabstechke.protoenergyinterview.data.network.OrdersApi
-import com.skylabstechke.protoenergyinterview.utils.Constants.Companion.BASE_URL
+import com.skylabstechke.protoenergyinterview.utils.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides

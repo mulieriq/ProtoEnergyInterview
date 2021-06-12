@@ -16,6 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.protoenergyinterview.R
 import com.skylabstechke.protoenergyinterview.adapters.RecyclerViewAdapter
 import com.skylabstechke.protoenergyinterview.databinding.ActivityMainBinding
+import com.skylabstechke.protoenergyinterview.utils.Constants.APP_TITLE
+import com.skylabstechke.protoenergyinterview.utils.Constants.QUERY_CANCELED
+import com.skylabstechke.protoenergyinterview.utils.Constants.QUERY_PENDING
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 import com.skylabstechke.protoenergyinterview.viewmodels.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         )
         setContentView(binding.root)
         supportActionBar?.apply {
-            title = "Payment Options"
+            title = APP_TITLE
         }
 
         orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
@@ -57,11 +60,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.filter_menu_canceled -> {
-                filter("Canceled")
+                filter(QUERY_CANCELED)
                 true
             }
             R.id.filter_menu_pending -> {
-                filter("Pending")
+                filter(QUERY_PENDING)
                 true
             }
             else -> super.onOptionsItemSelected(item)
