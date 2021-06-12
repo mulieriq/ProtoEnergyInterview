@@ -21,7 +21,7 @@ class OrderViewModel @ViewModelInject constructor(
     private val repository: Repository
 ) :
     AndroidViewModel(application) {
-    var orderResponse: MutableLiveData<NetworkResult<MutableList<OrdersModelItem>>> = MutableLiveData()
+    var orderResponse: MutableLiveData<NetworkResult<List<OrdersModelItem>>> = MutableLiveData()
 
     fun getOrders() = viewModelScope.launch {
         getOrdersSafeCall()

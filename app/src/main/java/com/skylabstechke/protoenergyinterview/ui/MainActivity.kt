@@ -14,7 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.protoenergyinterview.R
-import com.skylabstechke.protoenergyinterview.adapters.OrderRecyclerViewAdapter
+import com.skylabstechke.protoenergyinterview.adapters.RecyclerViewAdapter
 import com.skylabstechke.protoenergyinterview.databinding.ActivityMainBinding
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 import com.skylabstechke.protoenergyinterview.viewmodels.OrderViewModel
@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 
-    private val mAdapter by lazy { OrderRecyclerViewAdapter() }
+    private val mAdapter by lazy { RecyclerViewAdapter() }
     private lateinit var orderViewModel: OrderViewModel
 
 

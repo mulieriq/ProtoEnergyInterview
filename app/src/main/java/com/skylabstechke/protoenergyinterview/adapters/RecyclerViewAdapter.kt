@@ -14,7 +14,7 @@ import com.skylabstechke.protoenergyinterview.utils.formatTo
 import com.skylabstechke.protoenergyinterview.utils.toDate
 import java.util.Collections.emptyList
 
-class OrderRecyclerViewAdapter : RecyclerView.Adapter<OrderRecyclerViewAdapter.MyViewHolder>() {
+class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
     private var orders =  emptyList<OrdersModelItem>()
 
     inner class MyViewHolder(val binding: ActivityRowLayoutBinding) :
