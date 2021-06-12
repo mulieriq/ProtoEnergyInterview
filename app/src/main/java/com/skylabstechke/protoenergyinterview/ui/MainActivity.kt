@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.protoenergyinterview.R
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
         setUpRecyclerView()
         requestApi()
+
     }
 
 

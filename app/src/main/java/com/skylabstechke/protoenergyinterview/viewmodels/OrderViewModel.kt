@@ -25,6 +25,19 @@ class OrderViewModel @ViewModelInject constructor(
         getOrdersSafeCall()
     }
 
+    private fun hasInternetConnection(): Boolean {
+        val connectivityManager = getApplication<Application>()
+            .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetWork = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetWork) ?: return false
+
+        return when {
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
+        }
+    }
 
     private suspend fun getOrdersSafeCall() {
         orderResponse.value = NetworkResult.Loading()
@@ -66,17 +79,5 @@ class OrderViewModel @ViewModelInject constructor(
 
     }
 
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager =
-            getApplication<Application>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetWork = connectivityManager.activeNetwork ?: return false
-        val capabilities = connectivityManager.getNetworkCapabilities(activeNetWork) ?: return false
 
-        return when {
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
-    }
 }
