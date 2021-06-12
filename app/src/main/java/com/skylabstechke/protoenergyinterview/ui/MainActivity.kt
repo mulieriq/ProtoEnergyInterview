@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private val mAdapter by lazy { RecyclerViewAdapter() }
-    private lateinit var orderViewModel: OrderViewModel
+    private val orderViewModel by viewModels<OrderViewModel>()
 
 
     private var _binding: ActivityMainBinding? = null
@@ -44,8 +45,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.apply {
             title = APP_TITLE
         }
-
-        orderViewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
         setUpRecyclerView()
         requestApi()
     }

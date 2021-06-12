@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.skylabstechke.protoenergyinterview.databinding.ActivityRowLayoutBinding
 
 import com.skylabstechke.protoenergyinterview.models.OrdersModelItem
+import com.skylabstechke.protoenergyinterview.utils.Constants.DATE_FORMAT
 import com.skylabstechke.protoenergyinterview.utils.OrdersDefaultUtil
 import com.skylabstechke.protoenergyinterview.utils.formatTo
 import com.skylabstechke.protoenergyinterview.utils.toDate
 import java.util.Collections.emptyList
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
-    private var orders =  emptyList<OrdersModelItem>()
+    private var orders = emptyList<OrdersModelItem>()
 
     inner class MyViewHolder(val binding: ActivityRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -41,7 +42,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolde
         holder.binding.deliveryPoint.text = orders!![position]?.deliveryPointName
         holder.binding.status.text = orders!![position]?.status
         holder.binding.dateCreated.text =
-            orders!![position]?.dateCreated?.toDate()?.formatTo("dd-MM-yyyy 'at' HH:mm")
+            orders!![position]?.dateCreated?.toDate()?.formatTo(DATE_FORMAT)
 
     }
 
