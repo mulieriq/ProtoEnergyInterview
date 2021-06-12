@@ -12,7 +12,6 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabstechke.protoenergyinterview.R
 import com.skylabstechke.protoenergyinterview.adapters.RecyclerViewAdapter

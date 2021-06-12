@@ -8,5 +8,5 @@ import retrofit2.http.GET
 
 interface OrdersApi {
     @GET("api/v1/orders.json")
-    suspend fun getOrders(): Response<Flow<List<OrdersModelItem>>>
+    suspend fun getOrders():Response<List<OrdersModelItem>>
 }

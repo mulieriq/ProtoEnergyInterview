@@ -7,10 +7,8 @@ import android.net.NetworkCapabilities
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.skylabstechke.protoenergyinterview.data.repository.Repository
-
 import com.skylabstechke.protoenergyinterview.models.OrdersModelItem
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 import kotlinx.coroutines.launch
@@ -33,17 +31,21 @@ class OrderViewModel @ViewModelInject constructor(
         if (hasInternetConnection()) {
             try {
                 val apiOrderResponse = repository.getOrders()
+
+
                 orderResponse.value = handleApiOrderResponse(apiOrderResponse)
+
+
             } catch (e: Exception) {
                 orderResponse.value = NetworkResult.Error(e.message.toString())
             }
-        }else{
+        } else {
             orderResponse.value = NetworkResult.Error("No Internet Connection")
         }
     }
 
 
-    private fun handleApiOrderResponse(apiOrderResponse: Response<MutableList<OrdersModelItem>>): NetworkResult<MutableList<OrdersModelItem>> {
+    private fun handleApiOrderResponse(apiOrderResponse: Response<List<OrdersModelItem>>): NetworkResult<List<OrdersModelItem>> {
 
         when {
             apiOrderResponse.message().toString().contains("timeout") -> {

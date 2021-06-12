@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @ActivityRetainedScoped
 class Repository @Inject constructor(private val ordersApi: OrdersApi) {
-    suspend fun getOrders(): Response<Flow<List<OrdersModelItem>>> {
+    suspend fun getOrders(): Response<List<OrdersModelItem>>{
         return ordersApi.getOrders()
     }
 }
