@@ -53,6 +53,4 @@ object Network {
     fun provideApiService(retrofit: Retrofit): OrdersApi {
         return retrofit.create(OrdersApi::class.java)
     }
-
-
 }

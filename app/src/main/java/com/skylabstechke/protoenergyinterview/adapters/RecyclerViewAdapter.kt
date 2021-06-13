@@ -7,20 +7,18 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.skylabstechke.protoenergyinterview.databinding.ActivityRowLayoutBinding
-
 import com.skylabstechke.protoenergyinterview.models.OrdersModelItem
 import com.skylabstechke.protoenergyinterview.utils.Constants.DATE_FORMAT
+import com.skylabstechke.protoenergyinterview.utils.Extensions.formatTo
+import com.skylabstechke.protoenergyinterview.utils.Extensions.toDate
 import com.skylabstechke.protoenergyinterview.utils.OrdersDefaultUtil
-import com.skylabstechke.protoenergyinterview.utils.formatTo
-import com.skylabstechke.protoenergyinterview.utils.toDate
 import java.util.Collections.emptyList
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
     private var orders = emptyList<OrdersModelItem>()
 
     inner class MyViewHolder(val binding: ActivityRowLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -43,7 +41,6 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolde
         holder.binding.status.text = orders!![position]?.status
         holder.binding.dateCreated.text =
             orders!![position]?.dateCreated?.toDate()?.formatTo(DATE_FORMAT)
-
     }
 
     override fun getItemCount(): Int {
@@ -55,6 +52,5 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolde
         val diffUtilResults = DiffUtil.calculateDiff(orderDifUtil)
         diffUtilResults.dispatchUpdatesTo(this)
         orders = newData
-
     }
 }

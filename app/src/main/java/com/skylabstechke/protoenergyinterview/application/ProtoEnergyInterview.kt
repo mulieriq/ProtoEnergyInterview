@@ -4,8 +4,4 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class ProtoEnergyInterview : Application() {
-     fun getContext(): ProtoEnergyInterview {
-        return this
-    }
-}
+class ProtoEnergyInterview : Application()

@@ -27,10 +27,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-
     private val mAdapter by lazy { RecyclerViewAdapter() }
     private val orderViewModel by viewModels<OrderViewModel>()
-
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
@@ -47,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         }
         setUpRecyclerView()
         requestApi()
-
     }
 
 
@@ -95,8 +92,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun requestApi() {
-
-
         val request = orderViewModel.getOrders()
         Log.d("REQUEST DATA", request.toString())
         orderViewModel.orderResponse.observe(this, Observer { response ->
@@ -122,7 +117,6 @@ class MainActivity : AppCompatActivity() {
                     showShimmerEffect()
                 }
             }
-
         })
     }
 
@@ -136,7 +130,6 @@ class MainActivity : AppCompatActivity() {
                     showShimmerEffect()
                 }
                 is NetworkResult.Error -> {
-
                     hideShimmerEffect()
                     binding.errorImage.visibility = View.VISIBLE
                     binding.errText.visibility = View.VISIBLE
@@ -152,12 +145,10 @@ class MainActivity : AppCompatActivity() {
                 is NetworkResult.Success -> {
                     hideShimmerEffect()
                     response.data?.let {
-
                         mAdapter.setData(
                             it.filter { value ->
                                 value.status == query
                             }
-
                         )
                     }
                 }
