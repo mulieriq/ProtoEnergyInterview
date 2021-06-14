@@ -1,54 +1,33 @@
 package com.skylabstechke.protoenergyinterview.viewmodels
 
-import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skylabstechke.protoenergyinterview.data.repository.Repository
 import com.skylabstechke.protoenergyinterview.models.OrdersModelItem
+import com.skylabstechke.protoenergyinterview.utils.NetworkCheck
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class OrderViewModel @ViewModelInject constructor(
-    application: Application,
-    private val repository: Repository
+    private val repository: Repository,
+    private val networkStats: NetworkCheck
 ) :
-    AndroidViewModel(application) {
+    ViewModel() {
     var orderResponse: MutableLiveData<NetworkResult<List<OrdersModelItem>>> = MutableLiveData()
 
     fun getOrders() = viewModelScope.launch {
         getOrdersSafeCall()
     }
 
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager = getApplication<Application>()
-            .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetWork = connectivityManager.activeNetwork ?: return false
-        val capabilities = connectivityManager.getNetworkCapabilities(activeNetWork) ?: return false
-
-        return when {
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
-    }
-
     private suspend fun getOrdersSafeCall() {
         orderResponse.value = NetworkResult.Loading()
-        if (hasInternetConnection()) {
+        if (networkStats.hasInternetConnection()) {
             try {
                 val apiOrderResponse = repository.getOrders()
-
-
                 orderResponse.value = handleApiOrderResponse(apiOrderResponse)
-
-
             } catch (e: Exception) {
                 orderResponse.value = NetworkResult.Error(e.message.toString())
             }
@@ -59,25 +38,20 @@ class OrderViewModel @ViewModelInject constructor(
 
 
     private fun handleApiOrderResponse(apiOrderResponse: Response<List<OrdersModelItem>>): NetworkResult<List<OrdersModelItem>> {
-
-        when {
+        return when {
             apiOrderResponse.message().toString().contains("timeout") -> {
-                return NetworkResult.Error("Timeout")
+                NetworkResult.Error("Timeout")
             }
             apiOrderResponse.body()!!.isEmpty() -> {
-                return NetworkResult.Error("Recipes not found.")
+                NetworkResult.Error("Recipes not found.")
             }
             apiOrderResponse.isSuccessful -> {
                 val orders = apiOrderResponse.body()
-                return NetworkResult.Success(orders!!)
-
+                NetworkResult.Success(orders!!)
             }
             else -> {
-                return NetworkResult.Error(apiOrderResponse.message())
+                NetworkResult.Error(apiOrderResponse.message())
             }
         }
-
     }
-
-
 }
