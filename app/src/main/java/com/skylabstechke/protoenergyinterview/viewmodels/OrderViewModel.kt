@@ -10,13 +10,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.skylabstechke.protoenergyinterview.data.repository.Repository
 import com.skylabstechke.protoenergyinterview.models.OrdersModelItem
+import com.skylabstechke.protoenergyinterview.utils.NetworkCheck
 import com.skylabstechke.protoenergyinterview.utils.NetworkResult
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class OrderViewModel @ViewModelInject constructor(
     application: Application,
-    private val repository: Repository
+    private val repository: Repository,
+    private val networkCheck: NetworkCheck
 ) :
     AndroidViewModel(application) {
     var orderResponse: MutableLiveData<NetworkResult<List<OrdersModelItem>>> = MutableLiveData()
@@ -25,23 +27,10 @@ class OrderViewModel @ViewModelInject constructor(
         getOrdersSafeCall()
     }
 
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager = getApplication<Application>()
-            .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetWork = connectivityManager.activeNetwork ?: return false
-        val capabilities = connectivityManager.getNetworkCapabilities(activeNetWork) ?: return false
-
-        return when {
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
-    }
 
     private suspend fun getOrdersSafeCall() {
         orderResponse.value = NetworkResult.Loading()
-        if (hasInternetConnection()) {
+        if (networkCheck.hasInternetConnection()) {
             try {
                 val apiOrderResponse = repository.getOrders()
 
