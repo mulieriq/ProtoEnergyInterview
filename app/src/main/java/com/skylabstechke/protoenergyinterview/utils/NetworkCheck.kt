@@ -8,8 +8,7 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
 
 @ActivityRetainedScoped
-abstract class NetworkCheck @Inject constructor(@ApplicationContext private val context: Context) {
-
+class NetworkCheck @Inject constructor(@ApplicationContext private val context: Context) {
     fun hasInternetConnection(): Boolean {
         val connectivityManager = context
             .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
